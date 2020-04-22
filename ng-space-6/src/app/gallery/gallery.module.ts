@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { GalleryComponent } from './gallery/gallery.component';
 import { RouterModule } from '@angular/router';
-import { MatListModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatRadioModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MemoryComponent } from './memory/memory.component';
 import { CommonModule } from '@angular/common';
 import { AddMemoryDialogComponent } from './add-memory-dialog/add-memory-dialog.component';

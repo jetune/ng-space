@@ -11,9 +11,9 @@ Champion, your company is looking for a hero to work on its bleeding edge fronte
 5. Using the snippet below, add a Go to link in the `RocketDetailsComponent` to navigate to `/rockets/{id}`
 6. Fetch rocket informations using the `https://api.spacexdata.com/v3/rockets/{rocket_id}` endpoint and display it in the `RocketComponent` view
 7. Fetch all of the rocket launches using the `https://api.spacexdata.com/v3/launches?rocket_id={rocket_id}` and display them in the `RocketComponent` view using the snippets below
-8. Our secret agent in SpaceX managed to get his hands on the list of `rocket_id`, it's equal to `['falcon1', 'falcon9', 'falconheavy', 'bfr']`. Use this to our advantage to quickly navigate from one rocket to another using a next/previous buttons (snippets below)
-9. Our users are smart, they discovered that changing the browser url will also change the displayed rocket. However, sometimes they make mistakes while writing the `rocket_id`. Try to protect access to the `/rockets/{id}` route if the id is not in `['falcon1', 'falcon9', 'falconheavy', 'bfr']` list. Redirect to a `notfound` route using the `NotFound` component for a pleasant user experience.
-10. Bonus: How about you ditch this hard coded `rocket_id` list `['falcon1', 'falcon9', 'falconheavy', 'bfr']` and go for a full async check before allowing access to the `/rockets/{id}` route.
+8. Our secret agent in SpaceX managed to get his hands on the list of `rocket_id`, it's equal to `['falcon1', 'falcon9', 'falconheavy', 'starship']`. Use this to our advantage to quickly navigate from one rocket to another using a next/previous buttons (snippets below)
+9. Our users are smart, they discovered that changing the browser url will also change the displayed rocket. However, sometimes they make mistakes while writing the `rocket_id`. Try to protect access to the `/rockets/{id}` route if the id is not in `['falcon1', 'falcon9', 'falconheavy', 'starship']` list. Redirect to a `notfound` route using the `NotFound` component for a pleasant user experience.
+10. Bonus: How about you ditch this hard coded `rocket_id` list `['falcon1', 'falcon9', 'falconheavy', 'starship']` and go for a full async check before allowing access to the `/rockets/{id}` route.
 
 
 ## Further help
