@@ -1,0 +1,46 @@
+<ng-container *ngIf="rocketObs | async as rocket">
+    <!-- RocketComponent HTML -->
+    <div class="header">
+        <h1>{{ rocket.rocket_name }}</h1>
+        <i class="fa fa-circle" [ngClass]="rocket.active ? 'active' : 'inactive'"></i>
+    </div>
+
+    <div class="body">
+        <div class="summary">
+            <h3>Summary:</h3>
+            <div class="rows">
+                <div class="label-value-container">First flight: {{ rocket.first_flight }}</div>
+                <div class="label-value-container">Company: {{ rocket.company }}</div>
+                <div class="label-value-container">Cost per launch: {{ rocket.cost_per_launch }}</div>
+                <div class="label-value-container">Success rate: {{ rocket.success_rate_pct }}</div>
+                <div class="label-value-container">
+                    <!-- TODO 6: Provide your user with a great experience and open this link into a separate tab -->
+                    Wikipedia: <a> {{ rocket.wikipedia }} </a>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar">
+            <button (click)='previousRocketUrl(rocket.rocket_id)'><i class="fa fa-arrow-left"
+                    aria-hidden="true"></i></button>
+            <button (click)='nextRocketUrl(rocket.rocket_id)'><i class="fa fa-arrow-right"
+                    aria-hidden="true"></i></button>
+        </div>
+        <div class="content">
+            <div class="items-header">
+                <div class="hcell">Name</div>
+                <div class="hcell">Launch date</div>
+                <div class="hcell">Success</div>
+                <div class="hcell">Details</div>
+            </div>
+            <div *ngFor="let launch of rocketLaunchesObs | async" class="item-row">
+                <div class="rcell">{{ launch.mission_name }}</div>
+                <div class="rcell">{{ launch.launch_year }}</div>
+                <div class="rcell"><i class="fa fa-circle"
+                        [ngClass]="launch.launch_success ? 'active' : 'inactive'"></i></div>
+                <div class="rcell">{{ launch.details }}</div>
+            </div>
+        </div>
+
+    </div>
+
+</ng-container>

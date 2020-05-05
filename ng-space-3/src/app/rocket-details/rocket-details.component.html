@@ -1,5 +1,8 @@
 <div class="row" *ngFor="let payload of payloads">
   <div class="label-value-container">Name: {{ payload.name }}</div>
   <div class="label-value-container">Kg: {{ payload.kg }}</div>
+  <div class="label-value-container">
+  </div>
 </div>
 <!-- TODO 5: My GoTo link here ! -->
+<a [routerLink]='rocketUrl'>Go to <i class="fa fa-rocket" aria-hidden="true"></i></a>

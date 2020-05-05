@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   // TODO 5: hmmm, something is wrong here
-  title = 'ngSpace';
+  title = 'NgSpace';
 }

@@ -1,0 +1,37 @@
+:host {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    .items-container {
+      font: normal 13px Arial, sans-serif;
+      .items-header {
+        display: flex;
+        .hcell {
+          background-color: #ddefef;
+          border: solid 1px #ddeeee;
+          color: #336b6b;
+          padding: 10px;
+          text-align: center;
+          text-shadow: 1px 1px 1px #fff;
+          width: 150px;
+        }
+      }
+      .item-row {
+        display: flex;
+        .rcell {
+          border: solid 1px #ddeeee;
+          color: #333;
+          padding: 10px;
+          text-shadow: 1px 1px 1px #fff;
+          width: 150px;
+          text-align: center;
+          .active {
+            color: green;
+          }
+          .inactive {
+            color: red;
+          }
+        }
+      }
+    }
+  }

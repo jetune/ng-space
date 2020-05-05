@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-flow: column;
+    /* TODO 12: hmm, something vertically is missing here ! */ 
+    background-color: lightgray;
+    .row {
+      /* TODO 12: something is missing here ! */  
+      display: flex;
+      min-width: 100%;
+    }
+    .label-value-container {
+      flex: 1 1 50%
+      /* TODO 12: Split me up ? */
+    }
+  }

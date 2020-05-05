@@ -1,0 +1,44 @@
+<div class="items-container">
+    <h1>Rockets</h1>
+    <div class="items-header">
+        <div class="hcell">Name</div>
+        <div class="hcell">First flight</div>
+        <div class="hcell">Status</div>
+        <div class="hcell">Icon</div>
+        <div class="hcell">More</div>
+    </div>
+
+    <!-- TODO 4: Use the right directive to iterate through the list of rockets and display the name, first flight date and active status of each rocket-->
+    <div *ngFor="let rocket of rockets;" class="item-row">
+        <div class="rcell">{{ rocket.rocket_name }}</div>
+        <div class="rcell">{{ rocket.first_flight | date: 'fullDate' }}</div>
+        <!-- TODO 5: Use the (in)active classes in combination with circle icon to display the rocket status-->
+        <div class="rcell">
+            {{ rocket.active }}
+        </div>
+        <div class="rcell">
+            <i class="fa fa-check" [ngClass]="rocket.active ? 'active' : 'inactive'"></i>
+        </div>
+        <div class="rcell fa fa-caret-square-o-down fa-2x"></div>
+    </div>
+
+    <!-- TODO 4: Use the right directive to iterate through the list of rockets and display the name, first flight date and active status of each rocket-->
+    <ng-container *ngFor="let rocket of rocketsObs | async;">
+        <div class="item-row">
+            <div class="rcell">{{ rocket.rocket_name }}-Obs</div>
+            <div class="rcell">{{ rocket.first_flight | date: 'EEE, MMMM d, y' }}-Obs</div>
+            <!-- TODO 5: Use the (in)active classes in combination with circle icon to display the rocket status-->
+            <div class="rcell">
+                {{ rocket.active }}-Obs
+            </div>
+            <div class="rcell">
+                <i class="fa fa-check" [ngClass]="rocket.active ? 'active' : 'inactive'"></i>
+            </div>
+            <div class="rcell fa fa-caret-square-o-down fa-2x" (click)="displayDetails(rocket.id)"></div>
+        </div>
+        <ngs-rocket-details [@slideIn] *ngIf="shouldDisplayDetails(rocket.id)" [payloads]="rocket.payload_weights">
+        </ngs-rocket-details>
+    </ng-container>
+
+
+</div>

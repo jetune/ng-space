@@ -13,10 +13,7 @@
       <div class="rcell"><i class="fa fa-circle" [ngClass]="rocket.active ? 'active' : 'inactive'"></i></div>
       <div class="rcell fa fa-caret-square-o-down fa-2x" (click)="displayDetails(rocket.rocket_id)"></div>
     </div>
-    <ngs-rocket-details
-      *ngIf="shouldDisplayDetails(rocket.rocket_id)"
-      [payloads]="rocket.payload_weights"
-      [@slideIn]="'expanded'"
-    ></ngs-rocket-details>
+    <ngs-rocket-details *ngIf="shouldDisplayDetails(rocket.rocket_id)" [payloads]="rocket.payload_weights"
+      [rocketId]="rocket.rocket_id" [@slideIn]="'expanded'"></ngs-rocket-details>
   </ng-container>
 </div>
