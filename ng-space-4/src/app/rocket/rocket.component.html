@@ -16,6 +16,14 @@
           Wikipedia: <a [href]="rocket.wikipedia" target="_blank"> {{ rocket.wikipedia }} </a>
         </div>
         <!-- TODO 2: search box here !  -->
+        <!-- search box-->
+        <div class="search-box">
+          <input [formControl]="searchBox" type="text" />
+          {{ searchBox.hasError('pattern') }}
+          {{ searchBox.hasError('min') }}
+          <span *ngIf="searchBox.hasError('pattern')">This is not a valid year format</span>
+          <span *ngIf="searchBox.hasError('min')">No launches were scheduled before 2002</span>
+        </div>
         <div class="toolbar">
           <button (click)="navigate(-1)"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
           <button (click)="navigate(1)"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>

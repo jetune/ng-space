@@ -26,13 +26,16 @@ import { GalleryModule } from './gallery/gallery.module';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    GalleryModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/rockets', pathMatch: 'full' },
       { path: 'rockets', component: RocketsListComponent },
       { path: 'rockets/:id', component: RocketComponent, canActivate: [RocketGuard] },
       { path: 'notfound', component: NotFoundComponent },
-      { path: '**', redirectTo: '/notfound' }
+      { path: '**', redirectTo: '/notfound' },
+      {
+        path: 'gallery',
+        loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule)
+      },
     ])
   ],
   providers: [],

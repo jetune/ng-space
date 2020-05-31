@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MemoryType } from '../models/memory-type.enum';
+// import { Store } from '@ngrx/store';
+// import { AddMemory } from '../store/gallery.actions';
 
 @Component({
   selector: 'ngs-add-memory-dialog',
@@ -11,7 +13,11 @@ import { MemoryType } from '../models/memory-type.enum';
 export class AddMemoryDialogComponent implements OnInit {
   memoryForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddMemoryDialogComponent>) { }
+  // constructor(private store: Store<{}>, private fb: FormBuilder, public dialogRef: MatDialogRef<AddMemoryDialogComponent>) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<AddMemoryDialogComponent>) { }
 
   ngOnInit() {
     this.memoryForm = this.fb.group({
@@ -23,6 +29,12 @@ export class AddMemoryDialogComponent implements OnInit {
 
   addMemory(): void {
     if (this.memoryForm.valid) {
+
+      // Publish the Add emory Event before close
+      // this.store.dispatch(AddMemory(this.memoryForm.value));
+      this.data.addMemoryFn(this.memoryForm.value);
+
+      // Close the dialog
       this.dialogRef.close(this.memoryForm.value);
     }
   }
@@ -30,5 +42,4 @@ export class AddMemoryDialogComponent implements OnInit {
   closeDialog(): void {
     this.dialogRef.close(null);
   }
-
 }

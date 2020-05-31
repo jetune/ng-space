@@ -14,6 +14,12 @@ import { CommonModule } from '@angular/common';
 import { AddMemoryDialogComponent } from './add-memory-dialog/add-memory-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/gallery.reducers';
+import { environment } from 'src/environments/environment';
+import { GalleryEffect } from './store/gallery.effects';
 
 @NgModule({
   imports: [
@@ -27,6 +33,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([GalleryEffect]),
+    environment.production ? [] : [StoreDevtoolsModule.instrument({ maxAge: 50 })],
     RouterModule.forChild([{ path: 'gallery', component: GalleryComponent }])
   ],
   exports: [RouterModule],

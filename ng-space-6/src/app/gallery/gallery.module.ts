@@ -35,7 +35,7 @@ import { GalleryEffects } from './store/gallery.effects';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([GalleryEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    RouterModule.forChild([{ path: 'gallery', component: GalleryComponent }])
+    RouterModule.forChild([{ path: '', component: GalleryComponent }])
   ],
   exports: [RouterModule],
   entryComponents: [AddMemoryDialogComponent],

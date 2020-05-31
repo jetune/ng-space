@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { RocketComponent } from './rocket/rocket.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { RocketGuard } from './services/rocket.guard';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GalleryModule } from './gallery/gallery.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RocketGuard } from './services/rocket.guard';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    GalleryModule,
     // TODO 1: ReactiveForms or just Forms, I should probably go with Reactive, it's cooler !
+    ReactiveFormsModule,
     // TODO 7: Where is my gallery ?
     RouterModule.forRoot([
       { path: '', redirectTo: '/rockets', pathMatch: 'full' },

@@ -1,48 +1,58 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Memory } from '../models/memory';
 import { MemoriesService } from '../services/memories.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddMemoryDialogComponent } from '../add-memory-dialog/add-memory-dialog.component';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { FetchMemories, MemorySelected, AddMemory } from '../store/gallery.actions';
+import { memoriesSelector, selectedMemorSelector } from '../store/gallery.selectors';
 
 @Component({
   selector: 'ngs-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements OnInit, OnDestroy {
+export class GalleryComponent implements OnInit {
 
-  memories: Memory[] = [];
-  selectedMemory: Memory;
-  private readonly subscription: Subscription = new Subscription();
+  // Memory List
+  memories: Observable<Memory[]>;
 
-  constructor(private memoriesService: MemoriesService,
-    private dialog: MatDialog) { }
+  // Selected memory Observable
+  selectedMemory: Observable<Memory>;
+
+  constructor(
+    private memoriesService: MemoriesService,
+    private dialog: MatDialog,
+    private store: Store<{}>) { }
 
   ngOnInit() {
-    this.subscription.add(
-      this.memoriesService.getMemories().subscribe(result => this.memories = result)
-    );
+
+    // Trigger the Fetch memory Action
+    this.store.dispatch(FetchMemories());
+
+    // Subscribe on selected area of redux Store to get the memories updated by Redux ction reducers
+    this.memories = this.store.select(memoriesSelector);
+
+    // Select the observable
+    this.selectedMemory = this.store.select(selectedMemorSelector);
   }
 
   onMemorySelected(memory: Memory): void {
-    this.selectedMemory = memory;
+
+    // Dispatch selected action
+    this.store.dispatch(MemorySelected(memory));
   }
 
   openAddMemoryDialog(): void {
-    this.subscription.add(this.dialog.open(AddMemoryDialogComponent, { height: '50%', width: '50%' })
-      .afterClosed()
-      .pipe(filter(memory => !!memory))
-      .subscribe(memory => {
-        memory.id = this.memories.length;
-        this.memories.push(memory);
-        this.selectedMemory = memory
-      })
-    );
-  }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // Open the dialog (this one will trigger AddMemory Event when closed)
+    this.dialog.open(
+      AddMemoryDialogComponent,
+      {
+        height: '50%',
+        width: '50%',
+        data: { addMemoryFn: (memory) => this.store.dispatch(AddMemory(memory)) }
+      });
   }
 }

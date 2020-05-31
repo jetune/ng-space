@@ -18,10 +18,15 @@ export class RocketsService {
     return this.httpClient.get<Rocket>(`https://api.spacexdata.com/v3/rockets/${id}`);
   }
 
-  getRocketLaunches(id: string): Observable<Launch[]> {
-    const params = new HttpParams().append(
+  getRocketLaunches(id: string, year?: number): Observable<Launch[]> {
+    let params = new HttpParams().append(
       'rocket_id', id
     );
+
+    // If year is null
+    if (!!year) {
+      params = params.append('launch_year', `${year}`);
+    }
     return this.httpClient.get<Launch[]>(`https://api.spacexdata.com/v3/launches`, {
       params
     });

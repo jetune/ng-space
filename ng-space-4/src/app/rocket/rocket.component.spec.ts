@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RocketComponent } from './rocket.component';
 import { RocketsService } from '../services/rockets.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -51,6 +51,7 @@ describe('RocketComponent', () => {
     const searchBox = fixture.debugElement.query(By.css('input'));
     searchBox.nativeElement.value = 2010;
     searchBox.nativeElement.dispatchEvent(new Event('input'));
+    tick(1000);
     fixture.detectChanges();
     const launchRows = fixture.debugElement.queryAll(By.css('.item-row'));
     expect(launchRows.length).toBe(3);

@@ -36,6 +36,14 @@
           }
         }
       }
+      .search-box {
+        display: flex;
+        flex-flow: column;
+        height: 50px;
+        span {
+          color: red;
+        }
+      }
     }
     .content {
       border: solid 1px #ddeeee;

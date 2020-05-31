@@ -27,7 +27,11 @@ import { StatisticsComponent } from './statistics/statistics.component';
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
-    RouterModule.forChild([{ path: 'gallery', component: GalleryComponent }])
+    RouterModule.forChild(
+      [
+        { path: 'gallery', component: GalleryComponent }
+      ]
+    )
   ],
   exports: [RouterModule],
   entryComponents: [AddMemoryDialogComponent],
